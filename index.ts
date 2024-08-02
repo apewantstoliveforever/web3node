@@ -9,16 +9,22 @@ const server = http.createServer(app);
 // Initialize GUN with the server
 const gun = GUN({ web: server });
 
-//serve html say hello world
+// Middleware to add ngrok header
+app.use((req, res, next) => {
+  res.setHeader('ngrok-skip-browser-warning', 'true');
+  next();
+});
+
+// Serve HTML that says "Hello World"
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-// // Serve GUN with the server
-// app.use(gun.express);
-
+// Serve GUN with the server
+app.use(GUN.serve);
 
 // Start the server
-server.listen(3000, () => {
-  console.log('Server is listening on http://localhost:3000');
+const PORT = 3000;
+server.listen(PORT, () => {
+  console.log(`Server is listening on http://localhost:${PORT}`);
 });
