@@ -12,6 +12,7 @@
     "gun": "^0.2020.1240",
     "http-proxy": "^1.18.1",
     "peerjs": "^1.5.4",
+    "socket.io": "^4.8.1",
     "ws": "^8.18.0"
   },
   "devDependencies": {
